@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pathwise: your schedule, grades and next steps</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap">
+<style>
+*{box-sizing:border-box}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#F7F4EC;--card:#FFFFFF;--ink:#14231C;--mute:#566660;--line:#E2DDCF;--acc:#0F6B4F;--accink:#FFFFFF;--soft:#E3F0E8;--wbg:#FBE9D0;--warn:#8A4B08;--good:#0F6B4F;--bad:#B42318;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1713;--card:#16241D;--ink:#EDF3EF;--mute:#9DB0A6;--line:#27392F;--acc:#3DD6A0;--accink:#06231A;--soft:#1B3328;--wbg:#3A2A12;--warn:#F5B14C;--good:#3DD6A0;--bad:#FF8A7A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E1713;--card:#16241D;--ink:#EDF3EF;--mute:#9DB0A6;--line:#27392F;--acc:#3DD6A0;--accink:#06231A;--soft:#1B3328;--wbg:#3A2A12;--warn:#F5B14C;--good:#3DD6A0;--bad:#FF8A7A;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,Arial,sans-serif;font-size:16px;line-height:1.5}
+.w{max-width:1100px;margin:0 auto;padding:0 20px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:20px;padding-bottom:10px}
+.logo{display:flex;gap:10px;align-items:center;font-weight:800;font-size:24px;letter-spacing:-.4px}
+nav{display:flex;gap:6px;overflow-x:auto;padding:6px 20px 14px;max-width:1100px;margin:0 auto}
+nav button,.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 15px;border-radius:999px;font-weight:600;font-size:14px;font-family:inherit;white-space:nowrap;cursor:pointer;min-height:44px}
+.btn{border-radius:12px}
+nav button.on,.btn.on,.btn.p{background:var(--acc);color:var(--accink);border-color:var(--acc)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.g4{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));margin:16px 0 22px}
+.lbl{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--mute)}
+.big{font-size:30px;font-weight:800;letter-spacing:-.5px;line-height:1.15;margin-top:4px}
+.mu{color:var(--mute);font-size:15px}
+.chip{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;background:var(--soft);color:var(--good);margin:0 6px 6px 0}
+.chip.w{background:var(--wbg);color:var(--warn)}
+.up{color:var(--good);font-weight:700}.dn{color:var(--bad);font-weight:700}
+input,select,textarea{font-family:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 10px;min-height:44px}
+input[type=number]{width:92px}textarea{width:100%;min-height:150px;font-family:ui-monospace,Menlo,monospace;font-size:13px}
+table{width:100%;border-collapse:collapse}th{text-align:left;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--mute);padding:8px}td{padding:10px 8px;border-top:1px solid var(--line)}
+.sc{overflow-x:auto}tr.hi td{background:var(--soft)}
+h2{font-size:30px;letter-spacing:-.6px;margin:22px 0 4px}h3{margin:26px 0 10px;font-size:19px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.sp{margin-top:14px}.hero{background:var(--acc);color:var(--accink);border-radius:22px;padding:26px}.hero .lbl,.hero .mu{color:inherit;opacity:.85}
+footer{padding:36px 20px 48px;text-align:center;color:var(--mute);font-size:14px;max-width:700px;margin:0 auto}
+label.t{display:flex;gap:10px;align-items:center;min-height:44px}
+.clk{font-size:56px;font-weight:800;letter-spacing:-1px;font-variant-numeric:tabular-nums;line-height:1.1;margin:6px 0}
+.bar{height:10px;border-radius:6px;background:rgba(255,255,255,.28);margin-top:14px;overflow:hidden}.bar i{display:block;height:100%;background:var(--accink)}
+.lk{background:none;border:0;color:var(--ink);font-family:inherit;font-size:16px;font-weight:700;text-align:left;cursor:pointer;padding:8px 0;min-height:44px;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px}
+.dn2{text-decoration:line-through;opacity:.6}td input[type=number]{width:80px}
+</style>
+</head>
+<body>
+<div class="w top">
+<div class="logo"><svg aria-hidden="true" width="34" height="34" viewBox="0 0 34 34" fill="none"><rect width="34" height="34" rx="10" fill="var(--acc)"/><path d="M8 24c5 0 4-9 9-9s3 6 9 6" stroke="var(--accink)" stroke-width="3" stroke-linecap="round"/><circle cx="26" cy="11" r="3" fill="var(--accink)"/></svg>Pathwise</div>
+<div class="mu"><span id="demo" class="chip w">Demo data</span><b id="who"></b> <button class="btn" id="so" data-act="logout" hidden>Sign out</button></div>
+</div>
+<nav id="nav" aria-label="Sections"></nav>
+<main class="w" id="main"></main>
+<footer>Pathwise is a student project and isn’t affiliated with Genesis or any school. Your data stays in this browser. College ranges, clubs and opportunities are sample data to edit, so always verify with the source.</footer>
+<script>
+const KEY='pathwise:v2',$=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const GOALS={eng:'Engineering',cs:'Computer Science',sci:'Science & Research',med:'Medicine & Health',bus:'Business',law:'Law & Policy',edu:'Education',arts:'Arts & Design'};
+const TABS=[['sched','Schedule'],['grades','Grades'],['notes','Notes'],['plan','Course planner'],['col','Colleges'],['clubs','Clubs'],['opps','Opportunities']];
+const PER=[['7:40','8:25'],['8:30','9:15'],['9:20','10:05'],['10:10','10:55'],['11:00','11:45'],['11:50','12:35']];
+const SCALE=[[93,4,'A'],[90,3.7,'A-'],[87,3.3,'B+'],[83,3,'B'],[80,2.7,'B-'],[77,2.3,'C+'],[73,2,'C'],[70,1.7,'C-'],[67,1.3,'D+'],[65,1,'D'],[-1e9,0,'F']];
+const pts=g=>{const r=SCALE.find(x=>g>=x[0])||SCALE[10];return[r[1],r[2]]};
+const CAT=[
+{n:'Honors Precalculus',l:'Honors',g:11,pre:['Algebra II'],t:['eng','cs','med','bus']},
+{n:'AP Calculus AB',l:'AP',g:12,pre:['Precalculus'],t:['eng','cs','med','bus']},
+{n:'AP Statistics',l:'AP',g:11,pre:['Algebra II'],t:['med','bus','cs','law']},
+{n:'AP Computer Science A',l:'AP',g:11,pre:['Computer Science Principles'],t:['cs','eng']},
+{n:'AP Physics 1',l:'AP',g:11,pre:['Algebra II'],t:['eng','cs']},
+{n:'AP Chemistry',l:'AP',g:11,pre:['Chemistry'],t:['med','eng']},
+{n:'AP Biology',l:'AP',g:11,pre:['Chemistry'],t:['med']},
+{n:'Anatomy & Physiology',l:'Honors',g:11,pre:['Biology'],t:['med']},
+{n:'AP Psychology',l:'AP',g:11,pre:[],t:['med','law']},
+{n:'Advanced Engineering Design',l:'Honors',g:11,pre:['Engineering Design'],t:['eng']},
+{n:'Cybersecurity',l:'CP',g:11,pre:['Computer Science Principles'],t:['cs']},
+{n:'AP Macroeconomics',l:'AP',g:11,pre:[],t:['bus','law']},
+{n:'Accounting & Finance',l:'CP',g:11,pre:[],t:['bus']},
+{n:'AP Language & Composition',l:'AP',g:11,pre:['English 10'],t:['law','arts','bus','med']},
+{n:'AP US History',l:'AP',g:11,pre:['US History I'],t:['law','bus','arts']},
+{n:'AP Government & Politics',l:'AP',g:12,pre:[],t:['law','bus']},
+{n:'Public Speaking & Debate',l:'CP',g:11,pre:[],t:['law','bus']},
+{n:'Honors Spanish IV',l:'Honors',g:11,pre:['Spanish III'],t:['law','bus','med']},
+{n:'AP Art & Design',l:'AP',g:11,pre:[],t:['arts']},
+{n:'Digital Media & Design',l:'CP',g:11,pre:[],t:['arts','bus']}];
+const OPP=[
+{n:'FIRST Scholarships',k:'Scholarship',t:['eng','cs'],g:12,d:'For students involved in FIRST robotics programs.'},
+{n:'Regeneron Science Talent Search',k:'Competition',t:['eng','med','cs'],g:12,d:'Independent research competition for seniors.'},
+{n:'Summer research at a local university',k:'Internship',t:['eng','cs','med'],g:11,d:'Email professors or look for high school research programs.'},
+{n:'Hospital volunteering & job shadowing',k:'Internship',t:['med'],g:10,d:'Ask local hospitals and clinics about teen programs.'},
+{n:'Local business internship / job shadow',k:'Internship',t:['bus'],g:11,d:'Reach out to local firms, banks and startups.'},
+{n:'County or town government internship',k:'Internship',t:['law'],g:11,d:'Offices often take student interns and volunteers.'},
+{n:'Scholastic Art & Writing Awards',k:'Competition',t:['arts'],g:9,d:'Submit your best work for regional and national recognition.'},
+{n:'National Merit Scholarship (PSAT)',k:'Scholarship',t:['all'],g:11,d:'Starts with the PSAT/NMSQT in 11th grade.'},
+{n:'The Gates Scholarship',k:'Scholarship',t:['all'],g:12,d:'Check eligibility requirements on their site.'},
+{n:'Coca-Cola Scholars Program',k:'Scholarship',t:['all'],g:12,d:'Merit scholarship for seniors with leadership and service.'}];
+CAT.forEach(c=>{if(/AP (Chem|Bio|Phys|Calc|Stat)/.test(c.n))c.t.push('sci');if(/Psychology|Language|US History|Spanish/.test(c.n))c.t.push('edu')});
+const P=s=>s.split(';').map(x=>{const a=x.split('|');return{n:a[0],t:a[1].split(','),d:a[2]}});
+const SCH={demo:{n:'Demo High School',c:P('FTC Robotics|eng,cs|Build and program competition robots;Rocketry Team|eng|Design and launch high-power rockets;Coding Club|cs|Projects and hackathons;Science Olympiad|sci,eng,med|Team science events;HOSA|med|Health careers and service;DECA|bus|Business competitions;Mock Trial|law|Argue cases in a mock court;Model UN|law,bus|Debate global issues;Art Club|arts|Build a portfolio;Education Club|edu|Tutoring and teaching practice;Peer Tutoring|all|Teach what you know;National Honor Society|all|Service and leadership')},
+tech:{n:'Sample Tech Academy',c:P('Cybersecurity Club|cs|Capture-the-flag teams;Robotics|eng,cs|VEX and FIRST teams;3D Printing Lab|eng,arts|Prototype and make;Game Dev Club|cs,arts|Build and ship games;Math Team|eng,sci,cs|Competitions;Biotech Club|med,sci|Lab skills and projects;Entrepreneurs Club|bus|Pitch and launch ideas;Student Council|law,all|Lead school projects')},
+prep:{n:'Sample Prep School',c:P('Debate|law|Policy and Lincoln-Douglas;Investment Club|bus|Run a mock portfolio;Pre-Med Society|med|Speakers and shadowing;Engineering Club|eng|Build challenges;Literary Magazine|arts|Write and publish;Future Teachers|edu|Mentor younger students;Research Club|sci|Science fair projects;Service League|all|Community volunteering')},
+sb:{n:'South Brunswick High School',c:P('DECA|bus|Marketing and business competitions;Computer Science Academy|cs|Pathway with a senior capstone;Viking Television Network (VTN)|arts|Broadcast and video production;The Viking Vibe|arts,law|School newspaper and online journalism;Student Council|law,all|Student senate, events and traditions;HiTOPS|med,all|Senior peer health educators (application);PEER Leadership|all|Seniors lead freshman groups (application);Viking Marching Band|arts|Open to Concert Band members;Future Educators Academy|edu|Pathway starting with Human Behavior')},
+mine:{n:'My school (add your own clubs)',c:[]}};
+//SBHS 2026-27 course catalog (subset: math, science, CS, English, social studies, business, French, Spanish)
+const SBCAT=(()=>{let t=[],o=[];`#eng,cs,sci,med,bus
+Algebra I|CP|9||Math 8 >=90
+Geometry|CP|9|Algebra I|Algebra 1 >=73 (or Algebra 1 Plus >=93)
+Advanced Geometry|CP|9|Algebra I|Algebra 1 >=93
+Elements Of Geometry|CP|10|Algebra I|Algebra 1 >=65
+Algebra II|CP|9|Geometry;Elements Of Geometry|Algebra 1 and Geometry (or Elements) >=65
+Advanced Algebra II|CP|9|Geometry;Advanced Geometry|Geometry >=90 or Adv Geometry >=73, and Algebra 1 >=83
+Honors Algebra II|Honors|9|Advanced Geometry|Adv Geometry >=93 (rising 9th: also Algebra 1 >=93)
+College Algebra|CP|11|Algebra II|Algebra 2 >=73
+Pre-Calculus|CP|10|Algebra II;Advanced Algebra II|Algebra 2 >=83 or Adv Algebra 2 >=65
+Advanced Pre-Calculus|CP|10|Algebra II;Advanced Algebra II;Honors Algebra II|Algebra 2 >=93, Adv Alg 2 >=73 or Honors Alg 2 >=65
+Honors Pre-Calculus|Honors|10|Advanced Algebra II;Honors Algebra II|Adv Algebra 2 >=93 or Honors Algebra 2 >=80
+Calculus|CP|11|Advanced Pre-Calculus;Honors Pre-Calculus;Pre-Calculus|Adv PreCalc >=70, Honors Pre-Calc >=65 or PreCalc >=83
+College Calculus|AP|11|Advanced Pre-Calculus;Honors Pre-Calculus|Adv PreCalc >=87 or Honors Pre-Calc >=70
+AP Calculus AB|AP|10|Honors Pre-Calculus;College Calculus;Advanced Pre-Calculus|80% Honors Pre-Calc or College Calc, 90% Calculus, or 93% Adv Precalc
+AP Calculus BC|AP|10|Honors Pre-Calculus;AP Calculus AB;College Calculus|90% Honors Pre-Calc, or 83% AP Calc AB / College Calc
+Multivariable Calculus & Linear Algebra|AP|10|AP Calculus BC;AP Calculus AB|AP Calc BC >=80, or AP Calc AB >=93 and a 5 on the BC exam
+Differential Equations|AP|10|Multivariable Calculus|MCLA >=83
+Introduction To Statistics|CP|12|Pre-Calculus;College Algebra;Algebra II|Precalc >=65, College Algebra >=73, or 73% in any Algebra II
+AP Statistics|AP|11|Honors Pre-Calculus;Advanced Pre-Calculus;Calculus|Passing Honors Pre-Calc, 83% Adv Precalc, or 73% in Calculus/College Calc/AP Calc
+Discrete Math I|CP|12|Algebra I|Algebra 1 >=65 and Geometry >=65
+#eng,sci,med
+Physical & Earth Science|CP|9||None
+Physics I|CP|9|Algebra I|Algebra 1 >=83 (or Algebra 1 Plus >=90)
+Honors Physics 1|Honors|9|Algebra I|87% Algebra I plus 87% Adv Geometry or 90% Geometry (or strong Algebra II/Precalc)
+AP Physics 1|AP|9|Physics I;Honors Physics 1;Physical & Earth Science|70% Honors Physics 1, 83% Physics I or 93% PES; plus 90% Alg II and 90% Geometry
+Biology I|CP|10|Physical & Earth Science;Physics I|PES (10th-grade reading level recommended)
+Honors Biology I|Honors|10|Physical & Earth Science;Physics I;Honors Physics 1|93% PES, 83% Physics I or 77% Hon Physics; Chemistry (or co-enroll); 90% Academic English
+Biology II|CP|10|Biology I;Honors Biology I|Biology >=70 and PES or Physics
+Chemistry I|CP|10|Algebra I;Physical & Earth Science;Physics I|83% Algebra I (93% Alg 1 Plus) or 77% Alg II, AND 87% PES or 80% Physics I
+Honors Chemistry I|Honors|10|Algebra I;Physical & Earth Science;Physics I|90% Algebra I or 83% Alg II, AND 90% PES or 83% Physics I
+Honors Human Anatomy & Physiology|Honors|11|Biology I;Honors Biology I|80% Biology I or 77% Hon Bio, AND 77% Chem I or 73% Hon Chem
+Biotechnology|CP|11|Biology I;Honors Biology I|77% Biology (75% Honors) AND 77% Chem I (75% Honors)
+AP Biology|AP|11|Biology I;Honors Biology I|87% Bio I or 83% Hon Bio; 87% Chem I or 83% Hon Chem; Algebra II 87%; English 90%
+AP Chemistry|AP|10|Chemistry I;Honors Chemistry I|87% Chem I (83% Honors), a first-year physics (or 93% PES), 93% Algebra II
+AP Environmental Science|AP|11|Biology I;Honors Biology I|80% Hon Bio or 83% Bio; 80% Hon Chem or 83% Chem; 87% Algebra II
+AP Physics C|AP|11|Physics I;Honors Physics 1;AP Physics 1|Physics >=87, Hon Physics 1 >=83 or AP Physics 1 >75; calculus done or enrolled
+Organic Chemistry|AP|10|AP Chemistry|AP Chemistry >=65
+Modern Physics|AP|11|AP Physics C|AP Physics C >90
+#cs,eng
+Computer Science In The 21st Century|CP|9|Algebra I|Algebra 1 >=87
+Computer Science I|CP|10|Algebra I|Algebra 1 >=87
+AP Computer Science A|AP|10|Computer Science In The 21st Century;Computer Science I|CS21 or CS1 >=83
+AP Computer Science Principles|AP|11|Algebra II;Advanced Algebra II;Honors Algebra II|Algebra 2 >=83, Adv Alg 2 >=80 or Honors Alg 2 >=73
+CS Topics: Mobile App Development|AP|11|AP Computer Science A|AP Comp Sci A >=83
+CS Topics: Virtual Reality & Game Design|AP|11|AP Computer Science A|AP Comp Sci A >=83
+CS Topics: Data Structures|AP|12|Mobile App Development|Mobile App Development >=83
+AP Cybersecurity|AP|12|AP Computer Science Principles;AP Computer Science A|AP CS Principles >83 or completed AP CS A
+#law,edu,arts,bus
+Honors English II|Honors|10|English I|80% Honors English I or 90% Academic English I
+Academic English II|CP|10|English I|English I or Academic English I
+Honors English III|Honors|11|English II|80% Honors English II or 90% Academic English II
+Academic English III|CP|11|English II|Academic or Honors English II
+AP English III-Lang/Comp.|AP|11|English II|87% Honors English II or 93% Academic English II
+Honors English IV|Honors|12|English III|80% Honors English III or 90% Academic English III
+English IV College Composition|AP|12|English III|80% AP Eng III, 87% Honors Eng III or 93% Academic Eng III
+AP English IV-Lit/Comp|AP|12|English III|87% Honors Eng III, 85% AP Eng III or 93% Academic Eng III
+Academic English IV (choose a theme)|CP|12|English III|Academic, Honors or AP English III
+Honors Public Speaking|Honors|11||None
+College Public Speaking|AP|11|English II|80% Academic English II or III, or teacher recommendation
+Creative Writing|CP|10||None
+#law,edu,bus
+Honors U.S. History|Honors|10|American Experiment|90% Academic or 80% Honors American Experiment
+Academic Global Studies|CP|11|U.S. History|US or Academic US History
+Honors Global Studies|Honors|11|U.S. History|80% Honors/AP US History or 90% Academic US History
+AP US History|AP|10|American Experiment|90% Honors AmExp/US/Global + 93% Academic Eng (or 83% Honors Eng); or Pathway 2 (93% Academic AmExp + teacher rec)
+AP World History: Modern (Jr.)|AP|11|U.S. History|93% Honors US History or 70% AP US History
+AP European History (Jr)|AP|11|U.S. History|87% Honors US, 70% AP US or 93% Academic US
+AP US Government & Politics (Jr.)|AP|11|U.S. History|87% Honors US, 70% AP US or 93% Academic US
+AP Psychology|AP|11|U.S. History;Global Studies;Biology;Human Behavior|93% Academic / 90% Honors / 87% AP in US Hist, Global or Biology; or 90% Human Behavior
+AP African American Studies|AP|11||None
+AP Comparative Government & Politics (Sr.)|AP|12|Global Studies;World History|Any Global Studies or AP World History
+AP European History(Sr)|AP|12||None
+AP US Government & Politics(Sr)|AP|12||None
+AP World History: Modern(Sr)|AP|12|Global Studies|Global Studies
+#bus,law
+AP Microeconomics|AP|11||None
+AP Macroeconomics|AP|11||None
+Business Org. & Management|AP|10||None (dual credit)
+Concepts Of Business Management|AP|11|Business Org. & Management|>=73% Business Org & Mgmt (>=80% recommended)
+College Accounting I: Financial Accounting|AP|10||None (dual credit)
+College Accounting II: Managerial Accounting|AP|11|College Accounting I|73% Financial Accounting
+Academic Personal Financial Management|CP|11|U.S. History|80% US History or passing Academic/Honors/AP US History
+#all
+Spanish II|CP|9|Spanish I|Passing Spanish I or teacher rec
+Spanish III|CP|10|Spanish II|Spanish II
+Honors Spanish III|Honors|10|Spanish II|90% Spanish II or teacher rec
+Spanish IV|CP|10|Spanish III|Passing Spanish III
+Honors Spanish IV|Honors|11|Spanish III|88% Honors Spanish III or 93% Spanish III + teacher rec
+Honors Spanish V|Honors|12|Spanish IV|Honors Spanish IV or 85% Spanish IV + teacher rec
+AP Spanish V|AP|11|Spanish IV|88% Honors Spanish IV or teacher rec + placement
+French II|CP|9|French I|Passing French I or teacher rec
+French III|CP|10|French II|Passing French II
+Honors French III|Honors|10|French II|90% French II or teacher rec
+French IV|CP|11|French III|Passing French III
+Honors French IV|Honors|11|French III|88% Honors French III or 93% French III + teacher rec
+Honors French V|Honors|12|French IV|88% Honors French IV or 93% French IV + teacher rec
+AP French V|AP|12|French IV|88% Honors French IV + teacher rec`.split('\n').forEach(l=>{if(l[0]==='#'){t=l.slice(1)==='all'?Object.keys(GOALS):l.slice(1).split(',');return}const a=l.split('|');o.push({n:a[0],l:a[1],g:+a[2],pre:a[3]?a[3].split(';'):[],req:a[4],t,any:1})});return o})();
+const BM="javascript:(()=>{const cs=[],seen={};document.querySelectorAll('tr').forEach(r=>{const t=[...r.querySelectorAll('td,th')].map(c=>c.innerText.trim().replace(/\\s+/g,' '));const m=t.map(x=>x.match(/(\\d{1,3}(?:\\.\\d+)?)\\s*%/)).find(Boolean);const n=t.find(x=>/[A-Za-z]{4}/.test(x)&&!/%/.test(x)&&x.length<70);if(m&&n&&!seen[n]){seen[n]=1;cs.push({n,l:/(^|\\s)AP\\b/.test(n)?'AP':/Honors|Hon\\b/i.test(n)?'Honors':'CP',g:+m[1]})}});prompt('Found '+cs.length+' classes. Copy this text, then paste it into Pathwise Settings > Import:',JSON.stringify({courses:cs}))})()";
+const COL='MIT|MA|3.9|eng,cs,sci;Stanford|CA|3.9|eng,cs,sci,med,bus,law;Caltech|CA|3.9|eng,sci,cs;Carnegie Mellon|PA|3.9|cs,eng,arts;Georgia Tech|GA|3.9|eng,cs,sci;Cornell|NY|3.9|eng,bus,med,sci;Princeton|NJ|3.9|eng,sci,law,bus,cs;Johns Hopkins|MD|3.9|med,sci,eng;Duke|NC|3.9|med,eng,law,bus;University of Michigan|MI|3.9|eng,bus,cs,med,law;UC Berkeley|CA|3.9|cs,eng,sci,bus;UCLA|CA|3.9|med,arts,law,bus,eng;University of Virginia|VA|3.9|bus,law,eng,edu;University of Florida|FL|3.9|eng,bus,med,law;Northeastern|MA|3.8|eng,cs,bus,med;Villanova|PA|3.8|bus,eng,law,edu;Boston University|MA|3.8|bus,med,law,arts,edu;University of Maryland|MD|3.8|eng,cs,bus,edu;Pitt|PA|3.8|med,sci,eng,bus;Binghamton|NY|3.8|bus,eng,sci,edu;Rutgers University|NJ|3.7|bus,cs,eng,med,law,arts,edu,sci;Stevens Institute|NJ|3.7|eng,cs,bus;TCNJ|NJ|3.7|eng,bus,med,edu;Purdue|IN|3.7|eng,cs,sci;Virginia Tech|VA|3.7|eng,cs,sci;UMass Amherst|MA|3.7|cs,eng,bus,sci,edu;Stony Brook|NY|3.7|med,sci,eng,cs;Ohio State|OH|3.7|eng,bus,med,edu,sci;Penn State|PA|3.6|eng,bus,cs,med,edu,sci;Drexel|PA|3.6|eng,cs,med,bus,arts;RIT|NY|3.6|eng,cs,arts;University of Delaware|DE|3.6|eng,bus,arts,edu,sci;NJIT|NJ|3.5|eng,cs,arts;Temple|PA|3.5|med,bus,law,arts,edu;Montclair State|NJ|3.4|edu,arts,bus;Rowan University|NJ|3.4|eng,bus,med,arts,edu;Arizona State|AZ|3.4|eng,bus,cs,arts;Kean University|NJ|3.2|edu,bus,arts;Yale|CT|3.9|eng,cs,sci,law,arts;Harvard|MA|3.9|med,law,bus,sci,cs;Columbia|NY|3.9|eng,cs,med,law,bus,arts;University of Pennsylvania|PA|3.9|bus,eng,med,cs;Brown|RI|3.9|cs,eng,sci,arts;Dartmouth|NH|3.9|eng,med,bus,sci;Northwestern|IL|3.9|eng,med,bus,arts;Rice University|TX|3.9|eng,cs,sci,med;Washington University in St. Louis|MO|3.9|med,eng,bus,sci;Emory University|GA|3.8|med,bus,sci;University of Southern California|CA|3.8|eng,cs,arts,bus;University of Texas at Austin|TX|3.8|eng,cs,bus,sci;University of Washington|WA|3.8|cs,eng,med,sci;University of Wisconsin–Madison|WI|3.7|eng,cs,sci,bus;University of Minnesota|MN|3.6|eng,cs,sci,med;University of Connecticut|CT|3.6|eng,bus,med,edu;Lehigh University|PA|3.7|eng,bus;Rensselaer Polytechnic Institute|NY|3.7|eng,cs,sci;Worcester Polytechnic Institute|MA|3.7|eng,cs,sci;Embry-Riddle Aeronautical University|FL|3.5|eng,sci;University of Colorado Boulder|CO|3.6|eng,cs,sci;Oregon State University|OR|3.5|eng,cs,sci;University of Illinois Urbana-Champaign|IL|3.9|eng,cs,sci,bus'.split(';').map(x=>{const a=x.split('|');return{n:a[0],st:a[1],a:+a[2],s:a[3].split(',')}});
+const defCats=()=>['Tests|50','Quizzes|20','Homework|20','Classwork|10'].map(x=>{const a=x.split('|');return{n:a[0],w:+a[1],gw:+a[1],items:[]}});
+function mkc(n,l,p,d,r,t,base,c){let seed=n.length*7+base;const rnd=()=>(seed=(seed*9301+49297)%233280)/233280;
+return{n,l,p,d,r,t,c,g:base,cats:[['Tests','Test',50],['Quizzes','Quiz',20],['Homework','HW',20],['Classwork','Classwork',10]].map(([cn,sn,w],ci)=>({n:cn,w,gw:w,items:Array.from({length:ci?4:3},(_,i)=>{const m=ci?10:100;return{n:sn+' '+(i+1),s:Math.min(m,Math.round(m*(base+(rnd()-.5)*10)/100)),m,h:0}})}))}}
+const DEMO=()=>({demo:1,auth:0,name:'Alex Rivera',grade:10,school:'demo',goal:'eng',targets:['Georgia Tech','Rutgers University'],w:{AP:1,Honors:.5,CP:0},day:'A',clock:'',clockAt:0,cw:0,wi:0,open:null,q:'',st:'All',show:{sched:1,grades:1,notes:1,plan:1,col:1,clubs:1,opps:1},
+done:['Algebra I','Honors Geometry','Biology','English 9','World History','Spanish II','Intro to Computing'],myClubs:[],schoolCourses:[],notes:{goals:'',free:'',hw:[],join:[]},
+courses:[mkc('Honors English 10','Honors',1,'AB','214','Ms. Alvarez',92,1),mkc('Honors Algebra II','Honors',2,'AB','108','Mr. Chen',88,1),mkc('Honors Chemistry','Honors',3,'AB','Lab 3','Dr. Patel',85,1),mkc('US History I','CP',4,'AB','220','Mr. Brooks',95,1),mkc('AP Computer Science Principles','AP',5,'A','305','Ms. Okafor',97,1),mkc('Honors Spanish III','Honors',5,'B','118','Sra. Ruiz',90,1),mkc('Engineering Design','CP',6,'A','Shop 1','Mr. Dunn',96,1),mkc('Physical Ed & Health','CP',6,'B','Gym','Coach Reyes',99,.5)]});
+let S,TAB='sched';
+try{S=Object.assign(DEMO(),JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){S=DEMO()}
+S.open=null;
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const mins=t=>{const a=String(t).split(':');return +a[0]*60+ +a[1]};
+const nowS=()=>{if(S.clock)return mins(S.clock)*60+(Date.now()-S.clockAt)/1000;const d=new Date();return d.getHours()*3600+d.getMinutes()*60+d.getSeconds()};
+const fmt=s=>{s=Math.floor(s)%86400;const h=Math.floor(s/3600),m=Math.floor(s%3600/60);return(h%12||12)+':'+String(m).padStart(2,'0')+':'+String(s%60).padStart(2,'0')+' '+(h<12?'AM':'PM')};
+const dayList=d=>S.courses.filter(k=>k.d==='AB'||k.d===d).sort((a,b)=>(+a.p||99)-(+b.p||99)||String(a.n).localeCompare(String(b.n)));
+const periodTimes=k=>(k.start&&k.end)?[k.start,k.end]:(PER[(Math.max(1,Math.min(PER.length,+k.p||1)))-1]||PER[0]);
+const periodMinutes=v=>{let m=String(v||'').match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?/i);if(!m)return 0;let h=+m[1],mi=+(m[2]||0);if(m[3]){if(h===12)h=0;if(m[3].toUpperCase()==='PM')h+=12;}return h*60+mi};
+function gradeOf(k,wi){if(!k.cats||!k.cats.some(c=>c.items.length))return +k.g;let t=0,sw=0;k.cats.forEach(c=>{const it=c.items.filter(i=>wi||!i.h),m=it.reduce((a,i)=>a+ +i.m,0);if(m>0){t+=c.w*it.reduce((a,i)=>a+ +i.s,0)/m;sw+=+c.w}});return sw?100*t/sw:+k.g}
+function gpa(wi){let u=0,w=0,c=0;S.courses.forEach(k=>{const g=gradeOf(k,wi),p=pts(g)[0],cr=+k.c||1;u+=p*cr;w+=(p+(g>=65?(S.w[k.l]||0):0))*cr;c+=cr});return c?{u:u/c,w:w/c}:{u:0,w:0}}
+const gtxt=g=>g.toFixed(1)+'% · '+pts(g)[1];
+const hasWi=()=>S.courses.some(k=>k.cats.some(c=>c.items.some(i=>i.h)));
+const stat=(l,v,d)=>`<div class="card"><div class="lbl">${l}</div><div class="big">${v==null?'—':v.toFixed(2)}</div>${d!=null?`<div class="${d>=0?'up':'dn'}">${d>=0?'+':''}${d.toFixed(2)} vs now</div>`:'<div class="mu">&nbsp;</div>'}</div>`;
+const chips=a=>a.map(x=>`<span class="chip">${GOALS[x]||'All students'}</span>`).join('');
+const goalSel=()=>`<label>I want to go into <select data-act="goal" aria-label="Field">${Object.entries(GOALS).map(([k,v])=>`<option value="${k}" ${S.goal===k?'selected':''}>${v}</option>`).join('')}</select></label>`;
+const schoolSel=()=>`<label>School <select data-act="school" aria-label="School">${Object.entries(SCH).map(([k,v])=>`<option value="${k}" ${S.school===k?'selected':''}>${v.n}</option>`).join('')}</select></label>`;
+function heroHtml(){const t=nowS(),L=dayList(S.day),st=k=>periodMinutes(periodTimes(k)[0]),en=k=>periodMinutes(periodTimes(k)[1]),cur=L.find(k=>t>=st(k)&&t<en(k)),nx=L.find(k=>st(k)>t);let a,b='',bar='';
+if(cur){a='In class: '+esc(cur.n);b=`${Math.ceil((en(cur)-t)/60)} min left · Room ${esc(cur.r)} · ${esc(cur.t)}`+(nx?` · Next: ${esc(nx.n)} at ${PER[nx.p-1][0]}`:'');bar=`<div class="bar"><i style="width:${100*(t-st(cur))/(en(cur)-st(cur))}%"></i></div>`}
+else if(nx){a='Next: '+esc(nx.n);b=`In ${Math.ceil((st(nx)-t)/60)} min (${PER[nx.p-1][0]}) · Room ${esc(nx.r)} · ${esc(nx.t)}`}
+else{const o=S.day==='A'?'B':'A',f=dayList(o)[0];a='School’s out';b=`Tomorrow is ${o} day`+(f?`, first up ${esc(f.n)} in room ${esc(f.r)}`:'')}
+return`<div class="lbl">${S.clock?'Demo clock':'Right now'} · ${S.day} day</div><div class="clk">${fmt(t)}</div><div class="big" style="font-size:26px">${a}</div><div class="mu">${b}</div>${bar}`}
+const V={};
+V.sched=()=>`<h2>Schedule</h2><div class="hero" id="hero">${heroHtml()}</div>
+<div class="row sp"><button class="btn ${S.day==='A'?'on':''}" data-act="day" data-v="A">A day</button><button class="btn ${S.day==='B'?'on':''}" data-act="day" data-v="B">B day</button>
+<label class="mu">Set demo time <input type="time" data-act="clock" value="${esc(S.clock)}" aria-label="Demo time"></label><button class="btn" data-act="clockoff">Use real time</button></div>
+<div class="card sp sc"><table><tr><th>Period</th><th>Time</th><th>Class</th><th>Teacher</th><th>Room</th></tr>${dayList(S.day).map(k=>`<tr><td>P${k.p}</td><td>${periodTimes(k).map(esc).join('–')}</td><td><b>${esc(k.n)}</b> <span class="chip">${esc(k.l)}</span></td><td>${esc(k.t)}</td><td>${esc(k.r)}</td></tr>`).join('')}</table></div>`;
+const gbox=()=>{const a=gpa(0),b=gpa(1),any=hasWi();return`${stat('Unweighted GPA',a.u)}${stat('Weighted GPA',a.w)}${stat('With what-ifs (unweighted)',any?b.u:null,any?b.u-a.u:null)}${stat('With what-ifs (weighted)',any?b.w:null,any?b.w-a.w:null)}`};
+function detail(){const i=S.open,k=S.courses[i],opts=k.cats.map((c,ci)=>`<option value="${ci}">${esc(c.n)}</option>`).join('');
+return`<button class="btn" data-act="back">← All classes</button><h2>${esc(k.n)}</h2><div class="mu">${esc(k.t)} · Room ${esc(k.r)} · ${esc(k.l)}</div>
+<div class="g4"><div class="card"><div class="lbl">Grade with what-ifs</div><div class="big" id="cg">${gtxt(gradeOf(k,1))}</div></div><div class="card"><div class="lbl">Actual grade</div><div class="big" id="ca">${gtxt(gradeOf(k,0))}</div></div></div>
+<h3>Category weights</h3><div class="card"><div class="row">${k.cats.map((c,ci)=>`<label>${esc(c.n)} <input type="number" min="0" max="100" value="${c.w}" data-f="cw" data-i="${i}" data-c="${ci}" aria-label="${esc(c.n)} weight"> %</label>`).join('')}</div>
+<div class="row sp"><span class="mu" id="ws">Total ${k.cats.reduce((a,c)=>a+ +c.w,0)}%</span><button class="btn" data-act="rw">Reset to Genesis weights (${k.cats.map(c=>c.gw).join('/')})</button></div></div>
+<h3>Assignments & tests</h3><p class="mu">Enter each score and the points possible. Upcoming tests can be added as what-if scores to see what you need.</p>${!k.cats.some(c=>c.items.length)?'<p class="mu">Genesis returned the class average but no individual assignment scores for this class. This usually means the assignment-detail link was not exposed in the gradebook response; you can add scores below.</p>':''}${k.cats.map((c,ci)=>`<div class="card sc sp"><div class="lbl">${esc(c.n)} · ${c.w}%</div><table>${c.items.map((it,j)=>`<tr><td>${esc(it.n)}${it.due?' <span class="mu">· '+esc(it.due)+'</span>':''}${it.h?' <span class="chip w">what-if</span>':''}</td><td><input type="number" value="${it.s}" data-f="is" data-i="${i}" data-c="${ci}" data-j="${j}" aria-label="Score"></td><td>/ <input type="number" value="${it.m}" data-f="im" data-i="${i}" data-c="${ci}" data-j="${j}" aria-label="Out of"></td><td><label class="t"><input type="checkbox" data-f="ih" data-i="${i}" data-c="${ci}" data-j="${j}" ${it.h?'checked':''}> what-if</label></td><td><button class="btn" data-act="deli" data-i="${i}" data-c="${ci}" data-j="${j}">Delete</button></td></tr>`).join('')||'<tr><td class="mu">No assignments yet.</td></tr>'}</table></div>`).join('')}
+<h3>Class target & progress</h3><div class="card"><div class="row">Target grade <input id="ktarget" type="number" min="0" max="100" value="${k.target??90}" aria-label="Target grade percent"> % <button class="btn p" data-act="settarget">Save target</button></div><p class="mu">Pathwise compares your current grade with this target. Course eligibility cutoffs vary by school, so use the percentage your counselor or course guide gives you.</p><div id="targetstatus" class="sp"></div></div><h3>Add an assignment or upcoming test</h3><div class="card"><div class="row"><select id="ac" aria-label="Category">${opts}</select><input id="an" placeholder="Test / assignment name" aria-label="Name"><input id="as" type="number" placeholder="Score / what-if" aria-label="Score"><span>/</span><input id="am" type="number" value="100" aria-label="Points possible"><input id="adue" type="date" aria-label="Test date"><label class="t"><input type="checkbox" id="ah" checked> what-if</label><button class="btn p" data-act="addi">Add</button></div></div>
+<h3>What do I need?</h3><div class="card"><div class="row">I want <input id="ct" type="number" value="90" aria-label="Target grade"> % with one more <select id="cc" aria-label="Category">${opts}</select> worth <input id="cm" type="number" value="100" aria-label="Points"> pts</div><p class="big" style="font-size:20px" id="cr"></p></div>`}
+V.grades=()=>S.open!=null?detail():`<h2>Grades</h2><p class="mu">Click a class to see its assignments and category weights, add grades, and test what-ifs.</p><div class="g4">${gbox()}</div>
+<div class="card sc"><table><tr><th>Class</th><th>Level</th><th>Teacher</th><th>Grade / target</th><th>Status</th></tr>${S.courses.map((k,i)=>{const g=gradeOf(k,1),tg=+(k.target??90),behind=g<tg;return`<tr><td><button class="lk" data-act="open" data-v="${i}">${esc(k.n)}</button></td><td>${esc(k.l)}</td><td>${esc(k.t)}</td><td><b>${gtxt(g)}</b><div class="mu">Target: ${tg}%</div>${k.cats.some(c=>c.items.some(x=>x.h))?' <span class="chip w">what-if</span>':''}</td><td><span class="chip ${behind?'w':''}">${behind?'Below target':'On track'}</span></td></tr>`}).join('')}</table></div>
+<p class="mu">Weighting: AP +${S.w.AP}, Honors +${S.w.Honors}. Change it in Settings.</p>`;
+V.notes=()=>{const n=S.notes,hw=n.hw.map((h,i)=>({h,i})).sort((a,b)=>(a.h.d||'9').localeCompare(b.h.d||'9'));
+return`<h2>Notes</h2><div class="grid"><div class="card"><div class="lbl">My goals</div><textarea data-f="ng" aria-label="Goals" placeholder="What do you want this year? After high school?">${esc(n.goals)}</textarea></div><div class="card"><div class="lbl">Quick notes</div><textarea data-f="nf" aria-label="Notes">${esc(n.free)}</textarea></div></div>
+<h3>Homework</h3><div class="card"><div class="row"><input id="hwt" placeholder="What’s due?" aria-label="Homework"><select id="hwc" aria-label="Class">${S.courses.map(k=>`<option>${esc(k.n)}</option>`).join('')}</select><input id="hwd" type="date" aria-label="Due date"><button class="btn p" data-act="addhw">Add</button></div>
+<table class="sp">${hw.map(({h,i})=>`<tr><td><label class="t"><input type="checkbox" data-f="hd" data-i="${i}" ${h.done?'checked':''}> <span class="${h.done?'dn2':''}">${esc(h.t)}</span></label></td><td class="mu">${esc(h.c)}</td><td class="mu">${esc(h.d||'')}</td><td><button class="btn" data-act="delhw" data-i="${i}">Delete</button></td></tr>`).join('')||'<tr><td class="mu">Nothing due. Nice.</td></tr>'}</table></div>
+<h3>Clubs I want to join</h3><div class="card">${n.join.length?n.join.map(c=>`<div class="row" style="justify-content:space-between"><b>${esc(c)}</b><button class="btn" data-act="join" data-v="${esc(c)}">Remove</button></div>`).join(''):'<span class="mu">Nothing yet. Tap “Want to join” on the Clubs tab.</span>'}</div>`};
+function recs(){const have=[...S.done,...S.courses.map(k=>k.n)].map(x=>x.toLowerCase()),nx=S.grade+1,g=gpa(0).u,tg=COL.filter(c=>S.targets.includes(c.n)),has=p=>have.some(h=>h.includes(p.toLowerCase())),out=[],later=[];
+[...CAT.filter(c=>c.t.includes(S.goal)),...(S.school==='sb'?SBCAT:[]).filter(c=>c.t.includes(S.goal)),...(S.schoolCourses||[]).map(c=>({n:c.n,l:c.l,g:c.g,pre:c.pre?[c.pre]:[],t:[S.goal],min:c.min,custom:1}))].filter(c=>!have.includes(c.n.toLowerCase())).forEach(c=>{const miss=c.any?(c.pre.length&&!c.pre.some(has)?c.pre.slice(0,2):[]):c.pre.filter(p=>!has(p)),why=['Core path for '+GOALS[S.goal]],warn=[],hit=tg.filter(x=>x.s.includes(S.goal));let sc=5+(c.l==='AP'?(g>=3.5?1.5:.3):c.l==='Honors'?1:0)+hit.length*.5;
+if(hit.length)why.push('Fits what '+hit.map(x=>x.n).slice(0,2).join(' & ')+' look for');if(c.pre.length&&!miss.length)why.push('You have the prerequisite ('+c.pre.join(', ')+')');if(c.min!=null)why.push('School-listed target: '+c.min+'%');if(c.l==='AP'&&g<3)warn.push('Heavy load at your GPA. Consider Honors first.');
+(miss.length||c.g>nx?later:out).push({c,sc,why,warn,miss})});out.sort((a,b)=>b.sc-a.sc);return{out,later}}
+V.plan=()=>{const r=recs(),card=o=>`<div class="card"><span class="chip">${esc(o.c.l)}</span><span class="chip">Grade ${o.c.g}+</span>${o.c.min!=null?`<span class="chip">Target ${o.c.min}%</span>`:''}<div class="big" style="font-size:21px">${esc(o.c.n)}</div><p class="mu">${o.why.map(esc).join('. ')}.</p>${o.c.req?`<p class="mu">School prerequisite: ${esc(o.c.req)}. Check your grade in the prior class.</p>`:''}${o.warn.map(w=>`<span class="chip w">${esc(w)}</span>`).join('')}${o.miss.length?`<span class="chip w">Needs: ${o.miss.map(esc).join(', ')}</span>`:''}</div>`;
+return`<h2>Course planner</h2><p class="mu">Ranks next year’s classes using your history, GPA and target colleges.</p><div class="row">${goalSel()}<span class="mu">Targets: ${S.targets.length?S.targets.map(esc).join(', '):'none yet'}</span></div>
+<h3>Take next year (grade ${S.grade+1})</h3><div class="grid">${r.out.map(card).join('')||'<p class="mu">Nothing ready yet.</p>'}</div><h3>Plan ahead</h3><div class="grid">${r.later.map(card).join('')||'<p class="mu">Nothing to plan ahead for.</p>'}</div>`};
+function colList(){const gp=gpa(S.cw).u,q=(S.q||'').toLowerCase(),rows=COL.filter(c=>(S.st==='All'||c.st===S.st)&&c.n.toLowerCase().includes(q)).map(c=>{const d=gp-c.a;return{c,k:d>=.2?'Good chances':d>=-.15?'Targets':'Reaches',fit:c.s.includes(S.goal)}}).sort((a,b)=>b.fit-a.fit||b.c.a-a.c.a);
+return['Good chances','Targets','Reaches'].map(k=>{const l=rows.filter(r=>r.k===k);return`<h3>${k} (${l.length})</h3><div class="grid">${l.map(r=>`<div class="card"><div class="row" style="justify-content:space-between"><b>${esc(r.c.n)}</b><span class="mu">${r.c.st}</span></div><div class="mu">Typical admitted GPA about ${r.c.a.toFixed(1)}</div><div class="sp">${r.fit?`<span class="chip">Strong for ${GOALS[S.goal]}</span>`:''}</div><button class="btn ${S.targets.includes(r.c.n)?'on':''}" data-act="tgt" data-v="${esc(r.c.n)}">${S.targets.includes(r.c.n)?'Targeted ✓':'Add to targets'}</button></div>`).join('')||'<p class="mu">None.</p>'}</div>`}).join('')}
+V.col=()=>`<h2>Colleges</h2><p class="mu">Sorted using your unweighted GPA of <b>${gpa(S.cw).u.toFixed(2)}</b>. GPA is one piece of admissions and these ranges are rough samples, so check each school.</p>
+<div class="row">${goalSel()}<input id="cq" data-f="q" value="${esc(S.q)}" placeholder="Search colleges" aria-label="Search"><select data-act="st" aria-label="State">${['All',...new Set(COL.map(c=>c.st))].sort().map(s=>`<option ${S.st===s?'selected':''}>${s}</option>`).join('')}</select><label class="t"><input type="checkbox" data-act="cw" ${S.cw?'checked':''}> Use what-if grades</label></div><div id="cl">${colList()}</div>`;
+V.clubs=()=>{const all=[...SCH[S.school].c,...S.myClubs.map(x=>({n:x,t:['all'],d:'Added by you'}))].sort((a,b)=>b.t.includes(S.goal)-a.t.includes(S.goal));
+return`<h2>Clubs at your school</h2><div class="row">${schoolSel()}${goalSel()}</div><div class="grid sp">${all.map(c=>{const on=S.notes.join.includes(c.n);return`<div class="card"><b>${esc(c.n)}</b>${c.t.includes(S.goal)?' <span class="chip">Matches your goal</span>':''}<p class="mu">${esc(c.d)}</p>${chips(c.t)}<div><button class="btn ${on?'on':''}" data-act="join" data-v="${esc(c.n)}">${on?'On my list ✓':'Want to join'}</button></div></div>`}).join('')||'<p class="mu">No clubs yet. Add some below.</p>'}</div>
+<h3>Add a club your school has</h3><div class="row"><input id="ncn" placeholder="Club name" aria-label="Club name"><button class="btn p" data-act="addclub">Add</button></div>`};
+V.opps=()=>{const l=OPP.filter(o=>o.t.includes(S.goal)||o.t.includes('all')).sort((a,b)=>a.g-b.g);return`<h2>Internships, scholarships & competitions</h2><div class="row">${goalSel()}</div><p class="mu">Always confirm eligibility and deadlines at the source.</p><div class="grid">${l.map(o=>`<div class="card"><span class="chip">${esc(o.k)}</span><span class="chip ${S.grade>=o.g?'':'w'}">${S.grade>=o.g?'Open to your grade':'Starts grade '+o.g}</span><div class="big" style="font-size:21px">${esc(o.n)}</div><p class="mu">${esc(o.d)}</p></div>`).join('')}</div>`};
+V.set=()=>`<h2>Settings</h2><div class="grid">
+<div class="card"><div class="lbl">You</div><p><input data-f="name" value="${esc(S.name)}" aria-label="Name"></p><p><label>Grade <select data-act="grade">${[9,10,11,12].map(n=>`<option ${S.grade===n?'selected':''}>${n}</option>`).join('')}</select></label></p><p>${schoolSel()}</p><p>${goalSel()}</p></div>
+<div class="card"><div class="lbl">GPA weighting</div><p>AP +<input type="number" step=".1" value="${S.w.AP}" data-f="wt" data-l="AP" aria-label="AP bonus"> Honors +<input type="number" step=".1" value="${S.w.Honors}" data-f="wt" data-l="Honors" aria-label="Honors bonus"></p></div>
+<div class="card"><div class="lbl">Show these sections</div>${TABS.map(t=>`<label class="t"><input type="checkbox" data-act="show" data-k="${t[0]}" ${S.show[t[0]]!==0?'checked':''}> ${t[1]}</label>`).join('')}</div></div>
+<h3>School course catalog</h3><div class="card"><p class="mu">Add courses actually offered by your school, including the prerequisite and the minimum grade you need. These entries feed the course planner; they are not guessed from a generic school profile.</p><div class="row"><input id="scn" placeholder="Course name" aria-label="Course name"><select id="scl" aria-label="Course level"><option>CP</option><option>Honors</option><option>AP</option></select><input id="scg" type="number" min="9" max="12" value="11" aria-label="Grade offered"><input id="scp" placeholder="Prerequisite (optional)" aria-label="Prerequisite"><input id="scmin" type="number" min="0" max="100" value="85" aria-label="Minimum grade"><button class="btn p" data-act="addschoolcourse">Add course</button></div><div class="sp">${(S.schoolCourses||[]).map((c,i)=>`<div class="row"><b>${esc(c.n)}</b><span class="mu">${esc(c.l)} · Grade ${c.g} · target ${c.min}%${c.pre?' · Prereq: '+esc(c.pre):''}</span><button class="btn" data-act="delschoolcourse" data-i="${i}">Delete</button></div>`).join('')||'<p class="mu">No school-specific courses added yet.</p>'}</div></div><h3>Grab grades from Genesis (no install)</h3><div class="card"><p>Works on school computers. Make a new browser bookmark, paste the text below as its URL, open your Genesis grades page, click the bookmark, then paste the result into Import below. It reads the page you are already signed in to and never touches your password. Untested against South Brunswick’s Genesis, so check the imported classes.</p><textarea readonly aria-label="Bookmark code" style="min-height:90px" onclick="this.select()">${esc(BM)}</textarea></div><h3>Import your Genesis data</h3><div class="card"><p>A connector on your own device can sign in to Genesis and save your classes as JSON. Paste it here. Format: <code>{"name","grade","courses":[{"n","l":"AP|Honors|CP","p":1,"d":"A|B|AB","r","t","g":95,"c":1,"cats":[{"n":"Tests","w":50,"items":[{"n","s","m"}]}]}]}</code></p>
+<textarea id="imp" aria-label="Import JSON" placeholder="Paste JSON here"></textarea><div class="row sp"><button class="btn p" data-act="apply">Import</button><button class="btn" data-act="exp">Export current</button><button class="btn" data-act="reset">Reset to demo</button><button class="btn" data-act="logout">Sign out</button><span id="msg" class="mu"></span></div></div>`;
+const LOGIN=()=>`<div class="card" style="max-width:520px;margin:30px auto"><div class="lbl">Sign in</div><h2 style="margin-top:6px">Connect your Genesis account</h2><p class="mu">Choose your school, then connect by importing your Genesis data. Live Genesis sign-in requires a district-compatible connector; this standalone HTML cannot safely log in directly across Genesis domains.</p>
+<p><select id="gs" aria-label="School" style="width:100%">${Object.entries(SCH).map(([k,v])=>`<option value="${k}">${v.n}</option>`).join('')}</select></p><p><input id="gu" placeholder="Genesis email or username" autocomplete="username" aria-label="Username" style="width:100%"></p><p><input id="gp" type="password" placeholder="Password" autocomplete="current-password" aria-label="Password" style="width:100%"></p>
+<div class="row"><button class="btn p" data-act="login">Sign in</button><button class="btn" data-act="demo">Use the demo student</button></div>
+<p class="mu sp">Security note: this standalone page does not send or store your Genesis password. Genesis districts use different portal URLs and browser protections, so live syncing needs a district-compatible local connector. Do not paste your password into this page. Use Settings to import connector JSON or your own exported data.</p></div>`;
+function render(){const vis=TABS.filter(t=>S.show[t[0]]!==0).concat([['set','Settings']]);if(!vis.some(t=>t[0]===TAB))TAB=vis[0][0];
+$('#so').hidden=!S.auth;$('#who').textContent=S.auth?S.name+' ':'';$('#demo').style.display=S.auth&&S.demo?'':'none';
+if(!S.auth){$('#nav').innerHTML='';$('#main').innerHTML=LOGIN();return}
+$('#nav').innerHTML=vis.map(t=>`<button class="${t[0]===TAB?'on':''}" data-act="tab" data-v="${t[0]}">${t[1]}</button>`).join('');$('#main').innerHTML=V[TAB]();if(S.open!=null&&TAB==='grades'){calc();const k=S.courses[S.open],el=$('#targetstatus');if(el){const g=gradeOf(k,1),tg=+(k.target??90);el.innerHTML=`<span class="chip ${g<tg?'w':''}">${g<tg?'Behind target':'On track'}</span> Current ${g.toFixed(1)}% · Target ${tg}%${g<tg?` · Need to recover ${(tg-g).toFixed(1)} percentage points`:''}`}}}
+function calc(){const k=S.courses[S.open];if(!k||!$('#cr'))return;const t=+$('#ct').value,c=+$('#cc').value,m=+$('#cm').value||100;
+const g=x=>{const cp=structuredClone(k);cp.cats[c].items.push({s:x,m,h:0});return gradeOf(cp,1)},g0=g(0),g1=g(m);
+$('#cr').textContent=g1-g0<1e-9?'Add some assignments first.':(x=>x>m?`Even a perfect ${m}/${m} only gets you ${g1.toFixed(1)}%.`:x<=0?'You already clear that. Any score works.':`You need ${Math.ceil(x)} / ${m} (${(100*x/m).toFixed(0)}%).`)(m*(t-g0)/(g1-g0))}
+function updG(){const k=S.courses[S.open];if(!k||!$('#cg'))return;$('#cg').textContent=gtxt(gradeOf(k,1));$('#ca').textContent=gtxt(gradeOf(k,0));$('#ws').textContent='Total '+k.cats.reduce((a,c)=>a+ +c.w,0)+'%';calc()}
+function act(el){const a=el.dataset.act,d=el.dataset,v=el.tagName==='BUTTON'?d.v:el.value;
+switch(a){
+case'tab':TAB=v;break;case'day':S.day=v;break;case'clock':S.clock=v;S.clockAt=Date.now();break;case'clockoff':S.clock='';break;
+case'goal':S.goal=v;break;case'grade':S.grade=+v;break;case'school':S.school=v;break;case'st':S.st=v;break;
+case'cw':S.cw=el.checked?1:0;break;case'show':S.show[d.k]=el.checked?1:0;break;
+case'tgt':{const i=S.targets.indexOf(v);i<0?S.targets.push(v):S.targets.splice(i,1);break}
+case'open':S.open=+v;break;case'back':S.open=null;break;
+case'deli':S.courses[d.i].cats[d.c].items.splice(+d.j,1);break;
+case'rw':S.courses[S.open].cats.forEach(c=>c.w=c.gw);break;case'settarget':{const z=+($('#ktarget')||{}).value;if(Number.isFinite(z)&&z>=0&&z<=100)S.courses[S.open].target=z;break}
+case'addi':{const s=$('#as').value;if(s==='')return;S.courses[S.open].cats[+$('#ac').value].items.push({n:$('#an').value.trim()||'Assignment',s:+s,m:+$('#am').value||100,due:($('#adue')||{}).value||'',h:$('#ah').checked?1:0});break}
+case'addhw':{const t=$('#hwt').value.trim();if(!t)return;S.notes.hw.push({t,c:$('#hwc').value,d:$('#hwd').value,done:0});break}
+case'delhw':S.notes.hw.splice(+d.i,1);break;
+case'join':{const j=S.notes.join,i=j.indexOf(v);i<0?j.push(v):j.splice(i,1);break}
+case'addclub':{const n=$('#ncn').value.trim();if(!n)return;S.myClubs.push(n);break}case'addschoolcourse':{const n=$('#scn').value.trim();if(!n)return;S.schoolCourses=S.schoolCourses||[];S.schoolCourses.push({n,l:$('#scl').value,g:+$('#scg').value||11,pre:$('#scp').value.trim(),min:Math.max(0,Math.min(100,+$('#scmin').value||85))});break}case'delschoolcourse':(S.schoolCourses||[]).splice(+d.i,1);break
+case'login':case'demo':if($('#gs'))S.school=$('#gs').value;if($('#gp'))$('#gp').value='';S.auth=1;break;
+case'logout':S.auth=0;break;
+case'reset':{const k=DEMO();k.auth=1;S=k;TAB='sched';break}
+case'exp':$('#imp').value=JSON.stringify({name:S.name,grade:S.grade,school:S.school,done:S.done,schoolCourses:S.schoolCourses||[],courses:S.courses},null,1);return;
+case'apply':try{const j=JSON.parse($('#imp').value);if(!Array.isArray(j.courses)||!j.courses.length)throw 0;
+S.courses=j.courses.map(k=>({n:String(k.n||'Class'),l:['AP','Honors','CP'].includes(k.l)?k.l:'CP',p:Math.min(6,Math.max(1,+k.p||1)),d:['A','B','AB'].includes(k.d)?k.d:'AB',r:String(k.r||''),t:String(k.t||''),g:+k.g||0,c:+k.c||1,target:Number.isFinite(+k.target)?+k.target:90,cats:Array.isArray(k.cats)&&k.cats.length?k.cats.map(c=>({n:String(c.n),w:+c.w||0,gw:+(c.gw??c.w)||0,items:(c.items||[]).map(i=>({n:String(i.n||'Item'),s:+i.s||0,m:+i.m||100,h:+i.h?1:0}))})):defCats()}));
+if(j.name)S.name=String(j.name);if(+j.grade)S.grade=+j.grade;if(Array.isArray(j.done))S.done=j.done.map(String);if(Array.isArray(j.schoolCourses))S.schoolCourses=j.schoolCourses.filter(c=>c&&c.n).map(c=>({n:String(c.n),l:['AP','Honors','CP'].includes(c.l)?c.l:'CP',g:Math.min(12,Math.max(9,+c.g||11)),pre:String(c.pre||''),min:Math.min(100,Math.max(0,+c.min||85))}));if(j.school&&SCH[j.school])S.school=j.school;S.demo=0}catch(e){$('#msg').textContent='That JSON didn’t look right. Check the format above.';return}}
+save();render()}
+document.addEventListener('click',e=>{const b=e.target.closest('button[data-act]');if(b)act(b)});
+document.addEventListener('change',e=>{const t=e.target;if(t.dataset.act&&(t.tagName==='SELECT'||t.type==='checkbox'||t.type==='time'))act(t)});
+document.addEventListener('input',e=>{const t=e.target,f=t.dataset.f;
+if(f){const k=S.courses[t.dataset.i],c=t.dataset.c,j=t.dataset.j,v=t.type==='checkbox'?(t.checked?1:0):t.value;
+if(f==='is'||f==='im'){k.cats[c].items[j][f==='is'?'s':'m']=v===''?0:+v;updG()}
+else if(f==='ih'){k.cats[c].items[j].h=v;save();render();return}
+else if(f==='cw'){k.cats[c].w=+v||0;updG()}
+else if(f==='name'){S.name=v}
+else if(f==='wt')S.w[t.dataset.l]=+v||0;
+else if(f==='ng')S.notes.goals=v;else if(f==='nf')S.notes.free=v;
+else if(f==='hd'){S.notes.hw[t.dataset.i].done=v;save();render();return}
+else if(f==='q'){S.q=v;$('#cl').innerHTML=colList()}
+save()}
+if(['ct','cc','cm'].includes(t.id))calc()});
+setInterval(()=>{const h=$('#hero');if(h&&S.auth&&TAB==='sched')h.innerHTML=heroHtml()},1000);
+render();
+</script>
+<script src="/connector.js"></script>
+</body>
+</html>
